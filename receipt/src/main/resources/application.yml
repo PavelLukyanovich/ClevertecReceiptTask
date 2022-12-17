@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: receipt
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/dbase
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: none
+#      ddl-auto: none
+
+    generate-ddl: true
+#  sql:
+#    init:
+#      mode: always
+
+
+calculation:
+  service:
+    quantity:
+      default-quantity: 6
+      default-discount: 10
+

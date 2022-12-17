@@ -1,0 +1,54 @@
+GET http://localhost:8080/receipt
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2022-12-15T151455.200.txt
+
+###
+
+GET http://localhost:8080/receipt
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2022-12-15T151346.200.txt
+
+###
+
+GET http://localhost:8080/receipt
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2022-12-15T151230.200.txt
+
+###
+
+GET http://localhost:8080/receipt
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2022-12-15T151144.200.txt
+
+###
+
+GET http://localhost:8080/receipt
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2022-12-15T150805.200.txt
+
+###
+
+GET http://localhost:8080/receipt
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2022-12-15T150658.404.json
+
+###
+
