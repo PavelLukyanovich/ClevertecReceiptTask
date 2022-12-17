@@ -29,6 +29,7 @@ public class TxtPrintServiceImpl implements TxtPrintService {
         formatter.format(itemFormatHeader, "CASH RECEIPT", "supermarket GREEN", "Parkovaya St. 134/23", "tel: +562981235465");
         formatter.format(itemFormatDate, "DATE:", date);
         formatter.format(itemFormatTime, "TIME:", date.getTime());
+        formatter.format(itemFormatPreFooter, "======================================");
         formatter.format(itemFormatBody, "QTY", "DESCRIPTION", "PRICE", "TOTAL");
 
         bucketDto.getProductDtos()
