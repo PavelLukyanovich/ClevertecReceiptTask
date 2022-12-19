@@ -9,8 +9,12 @@ import java.util.List;
 @Data
 @Builder
 public class BucketDto {
+
     private List<ProductDto> productDtos;
+
     private Card card;
+
     private Double receivedSum;
+
     private Double discountSum;
 }

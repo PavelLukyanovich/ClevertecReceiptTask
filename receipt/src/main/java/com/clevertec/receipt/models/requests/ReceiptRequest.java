@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class ReceiptRequest {
+
     private String cardNumber;
 
     private List<Item> items;
@@ -16,7 +17,9 @@ public class ReceiptRequest {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Item {
+
         private Long id;
+
         private Integer amount;
     }
 }

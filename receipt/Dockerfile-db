@@ -1,0 +1,3 @@
+FROM postgres:12.7-alpine
+COPY src/main/resources/csvs/cards.csv /tmp/
+COPY src/main/resources/csvs/products.csv /tmp/

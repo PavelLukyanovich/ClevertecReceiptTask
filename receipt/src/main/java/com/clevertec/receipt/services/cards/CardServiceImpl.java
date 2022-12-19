@@ -12,7 +12,9 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CardServiceImpl implements CardService {
+
     private final CardRepository cardRepository;
+
     @Override
     public Card getCardByCardNumber(String cardNumber) {
 

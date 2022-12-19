@@ -12,8 +12,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class QuantityCalculationProductService implements CalculationProductService {
+
     @Value("${calculation.service.quantity.default-discount}")
     private Integer defaultDiscount;
+
     @Value("${calculation.service.quantity.default-quantity}")
     private Integer defaultQuantity;
 

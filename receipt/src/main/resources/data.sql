@@ -1,41 +1,26 @@
-create table public.cards
+create table if not exists public.cards
 (
-    id          bigint not null
-        primary key,
-    card_number varchar(5)
-        unique,
+    id          bigint not null primary key,
+    card_number varchar(5) unique,
     discount    real
 );
 
-alter table public.cards
-    owner to postgres;
-
-create table public.products
+create table if not exists public.products
 (
-    id                   bigint not null
-        primary key,
-    product_amount       integer,
-    has_product_discount boolean,
-    product_title        varchar(10)
+    id           bigint not null primary key,
+    price        numeric,
+    has_discount boolean,
+    title        varchar(50)
 );
 
-alter table public.products
-    owner to postgres;
-
-create table public.receipt
+create table if not exists public.receipts
 (
-    id                     bigint not null
-        primary key,
-    cashier_id             varchar(3),
-    date                   timestamp(6),
-    discount               integer,
-    amount_of_product      integer,
-    price_of_product       integer,
-    time                   bytea,
-    receipt_title          varchar(255),
-    total_price_of_product integer,
-    total_price_of_receipt integer
+    id                 bigint not null primary key,
+    creation_date_time timestamp(6),
+    json               varchar(255)
 );
 
-alter table public.receipt
-    owner to postgres;
+CREATE SEQUENCE IF NOT EXISTS receipts_seq;
+
+copy cards FROM '/tmp/cards.csv' DELIMITER ',';
+copy products FROM '/tmp/products.csv' DELIMITER ',';

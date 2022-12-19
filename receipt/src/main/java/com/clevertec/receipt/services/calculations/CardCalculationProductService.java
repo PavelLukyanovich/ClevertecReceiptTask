@@ -14,6 +14,7 @@ public class CardCalculationProductService implements CalculationProductService 
 
     @Override
     public BucketDto calculate(BucketDto bucketDto) {
+
         log.info("card calculation {}", bucketDto);
         Double rawReceiptTotalPrice = bucketDto.getProductDtos().stream()
                 .map(ProductDto::getTotalPrice)

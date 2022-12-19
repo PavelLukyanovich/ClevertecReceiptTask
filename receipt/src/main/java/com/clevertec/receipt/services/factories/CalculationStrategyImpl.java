@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class CalculationStrategyImpl implements CalculationStrategy {
+
     private final CardCalculationProductService cardCalculation;
+
     private final QuantityCalculationProductService quantityCalculation;
 
     @Override
     public void process(BucketDto bucketDto) {
+
         quantityCalculation.calculate(bucketDto);
         cardCalculation.calculate(bucketDto);
     }
