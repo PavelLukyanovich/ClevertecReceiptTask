@@ -9,12 +9,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-#      ddl-auto: none
-
-#    generate-ddl: true
   sql:
     init:
       mode: always
+
 calculation:
   service:
     quantity:
