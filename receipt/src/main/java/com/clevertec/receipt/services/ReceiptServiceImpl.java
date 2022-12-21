@@ -37,7 +37,8 @@ public class ReceiptServiceImpl implements ReceiptService {
 
     public String getReceipt(ReceiptRequest receiptRequest) {
 
-        Card card = cardService.getCardByCardNumber(receiptRequest.getCardNumber());
+        Card card = new Card();
+        //cardService.getCardByCardNumber(receiptRequest.getCardNumber());
         log.info("Fetched card {}", card);
         List<Long> productIds = receiptRequest.getItems().stream()
                 .map(ReceiptRequest.Item::getId)
