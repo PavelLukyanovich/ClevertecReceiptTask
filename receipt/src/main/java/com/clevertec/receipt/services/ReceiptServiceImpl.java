@@ -15,6 +15,7 @@ import com.clevertec.receipt.utils.ProductConverter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Slf4j
@@ -35,7 +36,6 @@ public class ReceiptServiceImpl implements ReceiptService {
     @Override
 
     public String getReceipt(ReceiptRequest receiptRequest) {
-
 
         Card card = cardService.getCardByCardNumber(receiptRequest.getCardNumber());
         log.info("Fetched card {}", card);

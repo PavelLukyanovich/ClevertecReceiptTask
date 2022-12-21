@@ -1,7 +1,6 @@
 package com.clevertec.receipt.services.print;
 
 import com.clevertec.receipt.models.dto.BucketDto;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
