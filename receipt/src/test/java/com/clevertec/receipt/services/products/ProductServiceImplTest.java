@@ -1,4 +1,5 @@
 package com.clevertec.receipt.services.products;
+
 import com.clevertec.receipt.models.entities.Product;
 import com.clevertec.receipt.repositories.ProductRepository;
 import org.junit.jupiter.api.Test;
@@ -11,24 +12,27 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTest {
     @Mock
     private ProductRepository productRepository;
     @InjectMocks
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
-    private static final List<Long> productIds = List.of(1L,2L);
+    private static final List<Long> productIds = List.of(1L, 2L, 3L);
 
     @Test
-    public void shouldReturnProductsByIds(){
+    public void shouldReturnProductsByIds() {
 
-       when(productRepository.findAllById(List.of(1L,2L,3L))).thenReturn(getProducts());
+        when(productRepository.findAllById(List.of(1L, 2L, 3L))).thenReturn(getProducts());
 
-       List<Product> fetchProducts = productService.findAllProductsByIds(productIds);
+        List<Product> fetchProducts = productService.findAllProductsByIds(productIds);
 
-        assertEquals("Products Ids: ", getProducts(), fetchProducts );
+        assertNotNull("Not null: ",fetchProducts);
+        assertEquals("Products Ids: ", getProducts(), fetchProducts);
+        assertEquals("Product lists equals: ",getProducts(), fetchProducts );
     }
 
     private static List<Product> getProducts() {

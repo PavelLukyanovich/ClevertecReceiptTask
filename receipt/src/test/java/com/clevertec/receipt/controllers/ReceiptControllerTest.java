@@ -68,5 +68,4 @@ public class ReceiptControllerTest {
         assertNotEquals("Good answer", contentAsString);
     }
 
-
 }

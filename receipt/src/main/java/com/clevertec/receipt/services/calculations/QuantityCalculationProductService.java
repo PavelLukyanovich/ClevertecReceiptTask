@@ -25,13 +25,6 @@ public class QuantityCalculationProductService implements CalculationProductServ
         List<ProductDto> rawProductDtos = bucketDto.getProductDtos();
 
         long quantityOfProductsDiscount = rawProductDtos.stream().filter(ProductDto::isHasDiscount).count();
-//        if (quantityOfProductsDiscount >= defaultQuantity) {
-//            List<ProductDto> productDtos = rawProductDtos.stream()
-//                    .map(this::calculateDiscounts).toList();
-//            bucketDto.setProductDtos(productDtos);
-//        }else {
-//
-//        }
 
         rawProductDtos.forEach(productDto -> {
             Double discountedPrice = 0.0;
