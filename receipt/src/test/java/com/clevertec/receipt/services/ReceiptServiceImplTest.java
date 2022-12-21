@@ -20,6 +20,7 @@ import static org.mockito.Mockito.lenient;
 public class ReceiptServiceImplTest {
     @Mock
     CalculationStrategy calculationStrategy;
+    @Mock
     ReceiptRequest receiptRequest;
     @Mock
     CardService cardService;
