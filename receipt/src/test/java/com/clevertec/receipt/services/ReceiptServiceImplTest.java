@@ -42,7 +42,7 @@ public class ReceiptServiceImplTest {
     private ReceiptServiceImpl receiptService;
 
     @Test
-    public void getCard_WhenCardHasGettingBiNumber() {
+    public void getCard_WhenCardHasGettingByNumber() {
 
         ReceiptRequest receiptRequest = new ReceiptRequest();
         receiptRequest.setCardNumber("0001");
@@ -69,5 +69,4 @@ public class ReceiptServiceImplTest {
         Assertions.assertArrayEquals(Arrays.asList(4L, 5L).toArray(), notFoundedProductIds.toArray());
 
     }
-
 }

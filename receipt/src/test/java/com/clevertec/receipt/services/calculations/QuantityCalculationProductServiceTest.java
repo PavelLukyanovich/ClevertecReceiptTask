@@ -1,17 +1,18 @@
 package com.clevertec.receipt.services.calculations;
-
 import com.clevertec.receipt.models.dto.BucketDto;
+import com.clevertec.receipt.models.dto.ProductDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.Collections;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import static org.junit.jupiter.api.Assertions.*;
 @RunWith(MockitoJUnitRunner.class)
 class QuantityCalculationProductServiceTest {
+    @Mock
+    ProductDto productDto;
 
     private QuantityCalculationProductService service;
 
