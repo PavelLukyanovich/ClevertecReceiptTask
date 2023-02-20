@@ -23,19 +23,24 @@ class CardCalculationProductServiceTest {
 
     @Test
     public void calculate_whenBucketDtoIsNull_shouldReturnNull() {
+
         BucketDto bucketDto = service.calculate(null);
         assertNull(bucketDto);
     }
 
     @Test
     public void calculate_whenProductDtosIsNull_shouldReturnNull() {
+
         BucketDto bucketDto = BucketDto.builder().build();
         assertNull(service.calculate(bucketDto));
     }
 
     @Test
     public void calculate_whenProductDtosIsEmpty_shouldReturnNull() {
-        BucketDto bucketDto = BucketDto.builder().productDtos(Collections.emptyList()).build();
+
+        BucketDto bucketDto = BucketDto.builder()
+                .productDtos(Collections.emptyList())
+                .build();
         assertNull(service.calculate(bucketDto));
 
     }
