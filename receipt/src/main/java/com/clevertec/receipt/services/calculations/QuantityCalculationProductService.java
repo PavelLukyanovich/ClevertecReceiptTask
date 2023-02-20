@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -21,6 +22,10 @@ public class QuantityCalculationProductService implements CalculationProductServ
 
     @Override
     public BucketDto calculate(BucketDto bucketDto) {
+
+        if (Objects.isNull(bucketDto) || Objects.isNull(bucketDto.getProductDtos())) {
+            return null;
+        }
 
         List<ProductDto> rawProductDtos = bucketDto.getProductDtos();
 
