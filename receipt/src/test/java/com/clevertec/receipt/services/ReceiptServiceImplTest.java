@@ -9,6 +9,8 @@ import com.clevertec.receipt.services.print.TxtPrintService;
 import com.clevertec.receipt.services.products.ProductService;
 import com.clevertec.receipt.services.receipt.ReceiptStorageService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,7 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,25 +42,44 @@ public class ReceiptServiceImplTest {
 
     @InjectMocks
     private ReceiptServiceImpl receiptService;
+    ReceiptRequest receiptRequest;
+    List<Product> productList;
 
-    @Test
-    public void getCard_WhenCardHasGettingByNumber() {
+    @BeforeEach
+    public void init() {
 
-        ReceiptRequest receiptRequest = new ReceiptRequest();
+        receiptRequest = new ReceiptRequest();
         receiptRequest.setCardNumber("0001");
         receiptRequest.setItems(Arrays.asList(
                 new ReceiptRequest.Item(1L, 2),
-                new ReceiptRequest.Item(2L, 2),
-                new ReceiptRequest.Item(3L, 2),
-                new ReceiptRequest.Item(4L, 2),
-                new ReceiptRequest.Item(5L, 2)
+                new ReceiptRequest.Item(2L, 4),
+                new ReceiptRequest.Item(3L, 1),
+                new ReceiptRequest.Item(4L, 3),
+                new ReceiptRequest.Item(5L, 5)
         ));
 
-        List<Product> productList = Arrays.asList(
-                new Product(1L, "n", 12.2, true),
-                new Product(2L, "r", 12.2, true),
-                new Product(3L, "r", 12.2, true)
+
+         productList = Arrays.asList(
+                new Product(1L, "Milk", 1.2, false),
+                new Product(2L, "Soap", 3.6, true),
+                new Product(3L, "Rope", 7.2, true)
         );
+
+    }
+
+    @Test
+    public void getReceipt_whenReceiptRequestIsNull_shouldReturnNull() {
+        String receipt = receiptService.getReceipt(null);
+        assertNull(receipt);
+    }
+    @Test
+    public void getReceipt_whenCardNumberIsNull_shouldReturnNull() {
+        receiptRequest.setCardNumber(null);
+        assertNull(receiptRequest.getCardNumber());
+    }
+
+    @Test
+    public void validateQuantityItems_WhenItemsNotFound_shouldTrowException() {
 
         when(productService.findAllProductsByIds(Arrays.asList(1L, 2L, 3L, 4L, 5L))).thenReturn(productList);
 
@@ -66,7 +87,7 @@ public class ReceiptServiceImplTest {
                 = assertThrows(NoSuchElementsException.class, () -> receiptService.getReceipt(receiptRequest))
                 .getNotFoundedProductIds();
         verify(cardService, times(1)).getCardByCardNumber(receiptRequest.getCardNumber());
-        Assertions.assertArrayEquals(Arrays.asList(4L, 5L).toArray(), notFoundedProductIds.toArray());
-
+        assertArrayEquals(Arrays.asList(4L, 5L).toArray(), notFoundedProductIds.toArray());
     }
+
 }
