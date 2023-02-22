@@ -1,4 +1,4 @@
-package com.clevertec.receipt.parser;
+package com.clevertec.receipt.models.entities;
 
 import java.util.List;
 

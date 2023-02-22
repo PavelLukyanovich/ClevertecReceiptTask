@@ -1,4 +1,4 @@
-package com.clevertec.receipt.parser;
+package com.clevertec.receipt.models.entities;
 
 public class EmployeeCard {
 
@@ -9,7 +9,6 @@ public class EmployeeCard {
     static class Responsibility {
         private char level;
         private boolean insurance;
-
 
     }
 }
