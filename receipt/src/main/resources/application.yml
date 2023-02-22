@@ -12,7 +12,11 @@ spring:
   sql:
     init:
       mode: always
-
+  cashing:
+    cashes:
+      LRUCash:
+        algorithm: LRU
+        max-size: 10
 calculation:
   service:
     quantity:
