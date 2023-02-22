@@ -6,8 +6,10 @@ public class EmployeeCard {
     private String number;
     private Responsibility responsibility;
 
-    class Responsibility {
+    static class Responsibility {
         private char level;
         private boolean insurance;
+
+
     }
 }
