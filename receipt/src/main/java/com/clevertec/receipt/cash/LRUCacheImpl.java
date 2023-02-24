@@ -1,83 +1,39 @@
 package com.clevertec.receipt.cash;
 
-import com.clevertec.receipt.models.entities.User;
+import java.util.*;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Objects;
+public class LRUCacheImpl<T> implements Cache<Integer, T> {
+    private final Map<Integer, T> cacheData = new HashMap<>();
 
-public class LRUCacheImpl {
-    // Для хранения данных
-    HashMap<Integer, User> data = new HashMap<>();
-    // для хранения порядка доступа к кешу
-    LinkedList<Integer> order = new LinkedList<>();
-    // размер кэша
-    int capacity;
+    private final List<Integer> order = new LinkedList<>();
 
-    public LRUCacheImpl(int capacity) {
-        this.capacity = capacity;
+    private final int cacheCapacity;
+
+    public LRUCacheImpl(int cacheCapacity) {
+        this.cacheCapacity = cacheCapacity;
     }
 
-    // метод для добавления новых данных в кеш
+    @Override
+    public void put(Integer key, T value) {
 
-    public void put(Integer key, User user) {
+        if (order.size() >= cacheCapacity) {
 
-        // проверяем не заполнен ли кеш
-        if (order.size() >= capacity) {
-            // если кеш заполнен удаляем последний элемент из order и затем из data
-            Integer keyRemoved = order.removeLast();
-            data.remove(keyRemoved);
+            Integer keyRemoved = order.remove(order.size() - 1);
+            cacheData.remove(keyRemoved);
         }
-        // добавляем новые данные в начало order и затем в data
-        order.addFirst(key);
-        data.put(key, user);
-
+        order.add(0, key);
+        cacheData.put(key, value);
     }
 
-    // метод для получения данных из кеша
-    public User get(Integer key) {
-        // получаем данные по ключу
-        User user = data.get(key);
-        // если полученный результат(данные) не null убираем ключ из конца order и добавляем в начало
-        if (!Objects.isNull(user)) {
+    @Override
+    public <T> T get(Integer key) {
+
+        T value = (T) cacheData.get(key);
+        if (Objects.nonNull(value)) {
+
             order.remove(key);
-            order.addFirst(key);
-        } else {
-            // иначе возвращаем null
-            user = null;
+            order.add(0, key);
         }
-        return user;
-
-
+        return value;
     }
-/*    public void display() {
-
-        for (int i = 0; i < order.size(); i++) {
-            Integer key = order.get(i);
-            System.out.println(key + " => " + data.get(key));
-        }
-    }
-
-    public static void main(String[] args) {
-        LRUCacheImpl cache = new LRUCacheImpl(3);
-        User user = new User();
-
-        cache.put(1, user);
-        cache.put(2, user);
-        cache.put(3, user);
-        cache.display();
-
-        cache.get(2);
-
-        cache.display();
-
-        cache.put(4, user);
-
-        cache.display();
-
-
-
-    }*/
-
-
 }

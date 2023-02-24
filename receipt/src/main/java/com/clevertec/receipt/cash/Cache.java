@@ -2,10 +2,7 @@ package com.clevertec.receipt.cash;
 
 import java.util.Optional;
 
-public interface Cache<K,V> {
-    boolean set(K key, V value);
-    Optional<V> get(K key);
-    int size();
-    boolean isEmpty();
-    void clear();
+public interface Cache<Integer, T> {
+    void put(Integer key, T value);
+    <T>T get(Integer key);
 }
