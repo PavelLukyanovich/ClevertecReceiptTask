@@ -1,5 +1,7 @@
 package com.clevertec.receipt.cash;
 
+import lombok.Data;
+
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -30,10 +32,10 @@ public class LFUCacheImpl<T> implements Cache<Integer, T>{
             return;
         }
         if (values.size() >= cacheCapacity) {
-            int evit = lists.get(min).iterator().next();
-            lists.get(min).remove(evit);
-            values.remove(evit);
-            counts.remove(evit);
+            int evict = lists.get(min).iterator().next();
+            lists.get(min).remove(evict);
+            values.remove(evict);
+            counts.remove(evict);
         }
         // If the key is new, insert the value and current min should be 1 of course
         values.put(key, value);

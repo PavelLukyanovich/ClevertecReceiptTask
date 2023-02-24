@@ -1,5 +1,7 @@
 package com.clevertec.receipt.cash;
 
+import lombok.Data;
+
 import java.util.*;
 
 public class LRUCacheImpl<T> implements Cache<Integer, T> {
@@ -33,7 +35,8 @@ public class LRUCacheImpl<T> implements Cache<Integer, T> {
 
             order.remove(key);
             order.add(0, key);
+            return value;
         }
-        return value;
+        return null;
     }
 }
