@@ -1,21 +1,11 @@
 package com.clevertec.receipt.cash;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+
 class LRUCacheImplTest {
 
     @Test
@@ -56,9 +46,13 @@ class LRUCacheImplTest {
 
         LRUCacheImpl lruCache = new LRUCacheImpl<>(3);
 
-        List<Integer> orders = new LinkedList<>();
 
-        when()
+        lruCache.put(1, "data1");
+        lruCache.put(2, "data2");
+
+        lruCache.get(2);
+
+        assertEquals(lruCache.getOrder().get(0), 2 );
 
     }
 }

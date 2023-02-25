@@ -3,7 +3,7 @@ package com.clevertec.receipt.cash;
 import lombok.Data;
 
 import java.util.*;
-
+@Data
 public class LRUCacheImpl<T> implements Cache<Integer, T> {
     private final Map<Integer, T> cacheData = new HashMap<>();
 
