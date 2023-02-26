@@ -30,7 +30,7 @@ public class EnableCacheAspect<T> {
 
     }
 
-    @After("@annotation(PostEnableCache)")
+    @Around("@annotation(PostEnableCache)")
     public T postEnableCache(ProceedingJoinPoint joinPoint) throws Throwable {
 
         T dataFromRepo = (T) joinPoint.proceed();
@@ -40,7 +40,7 @@ public class EnableCacheAspect<T> {
         return cache.put(id, dataFromRepo);
     }
 
-    @After("@annotation(DeleteEnableCache)")
+    @Around("@annotation(DeleteEnableCache)")
     public T deleteEnableCache(ProceedingJoinPoint joinPoint) throws Throwable {
 
         T dataFromRepo = (T) joinPoint.proceed();
