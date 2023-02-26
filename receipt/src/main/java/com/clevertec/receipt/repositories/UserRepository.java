@@ -4,10 +4,10 @@ import com.clevertec.receipt.models.entities.User;
 
 public interface UserRepository {
 
-    User save(User user);
+    public User save(User user);
 
-    void deleteById(int id);
+    public void deleteById(int id);
 
-    User getById(int id);
+    public User getById(int id);
 
 }

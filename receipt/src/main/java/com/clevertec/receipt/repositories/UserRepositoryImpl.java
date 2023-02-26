@@ -1,9 +1,10 @@
 package com.clevertec.receipt.repositories;
 
 import com.clevertec.receipt.models.entities.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
-
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     private Map<Integer, User> userRepo;

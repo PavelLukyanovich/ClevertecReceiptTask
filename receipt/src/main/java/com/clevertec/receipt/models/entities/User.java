@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class User {
+
     int id;
     int age;
     String status;
