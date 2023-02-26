@@ -15,14 +15,15 @@ public class EnableCacheAspect<T> {
 
     @Around("@annotation(GetEnableCache)")
     public T getEnableCache(ProceedingJoinPoint joinPoint) throws Throwable {
+
         Integer id = (Integer) joinPoint.getArgs()[0];
         T dataFromCache = cache.get(id);
+
         if (dataFromCache != null) {
             return dataFromCache;
         }
 
         T dataFromRepo = (T) joinPoint.proceed();
-
         cache.put(id, dataFromRepo);
 
         return dataFromRepo;
