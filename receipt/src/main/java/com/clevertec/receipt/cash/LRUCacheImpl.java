@@ -16,7 +16,7 @@ public class LRUCacheImpl<T> implements Cache<Integer, T> {
     }
 
     @Override
-    public void put(Integer key, T value) {
+    public  T put(Integer key, T value) {
 
         if (order.size() >= cacheCapacity) {
 
@@ -24,11 +24,11 @@ public class LRUCacheImpl<T> implements Cache<Integer, T> {
             cacheData.remove(keyRemoved);
         }
         order.add(0, key);
-        cacheData.put(key, value);
+        return cacheData.put(key, value);
     }
 
     @Override
-    public <T> T get(Integer key) {
+    public T get(Integer key) {
 
         T value = (T) cacheData.get(key);
         if (Objects.nonNull(value)) {

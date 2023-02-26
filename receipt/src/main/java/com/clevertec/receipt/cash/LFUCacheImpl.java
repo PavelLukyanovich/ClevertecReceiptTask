@@ -20,7 +20,7 @@ public class LFUCacheImpl<T> implements Cache<Integer, T> {
 
 
     @Override
-    public void put(Integer key, T value) {
+    public  T put(Integer key, T value) {
 
         if (cacheStorage.size() < capacity) {
             cacheStorage.put(key, new Node(value));
@@ -31,7 +31,7 @@ public class LFUCacheImpl<T> implements Cache<Integer, T> {
 
         for (Map.Entry<Integer, Node> entry : cacheStorage.entrySet()) {
             if (Objects.equals(entry.getKey(), key)) {
-                return;
+
             }
 
             if (minFrequency >= entry.getValue().getFrequency()) {
@@ -40,11 +40,11 @@ public class LFUCacheImpl<T> implements Cache<Integer, T> {
             }
         }
         cacheStorage.remove(keyToRemove);
-        cacheStorage.put(key, new Node(value));
+       return (T) cacheStorage.put(key, new Node(value));
     }
 
     @Override
-    public <T> T get(Integer key) {
+    public T get(Integer key) {
 
         Node node = cacheStorage.get(key);
         if (Objects.isNull(node)) {
@@ -55,10 +55,10 @@ public class LFUCacheImpl<T> implements Cache<Integer, T> {
     }
 
     @Data
-    private class Node {
+    private class Node<T> {
 
         private final T value;
-        private long frequency;
+        public long frequency;
 
         public Node(T value) {
             this.value = value;
