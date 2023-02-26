@@ -1,5 +1,6 @@
 package com.clevertec.receipt.cash;
 
+import com.clevertec.receipt.models.entities.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

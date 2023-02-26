@@ -56,6 +56,11 @@ public class LFUCacheImpl<T> implements Cache<Integer, T> {
 
     }
 
+    @Override
+    public T remove(Integer key) {
+        return (T) cacheStorage.remove(key);
+    }
+
     @Data
     private class Node<T> {
 

@@ -42,4 +42,11 @@ public class LRUCacheImpl<T> implements Cache<Integer, T> {
         }
         return null;
     }
+
+    @Override
+    public T remove(Integer key) {
+        order.remove(key);
+
+        return cacheData.remove(key);
+    }
 }
