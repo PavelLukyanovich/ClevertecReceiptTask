@@ -1,28 +1,30 @@
 package com.clevertec.receipt.cash;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 @Data
+@Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class LFUCacheImpl<T> implements Cache<Integer, T> {
 
-    private final LinkedHashMap<Integer, Node> cacheStorage;
-    private final int capacity;
-
-    public LFUCacheImpl(int capacity) {
-
-        this.capacity = capacity;
-        cacheStorage = new LinkedHashMap<>(capacity, 1);
-    }
-
+    private final Map<Integer, Node> cacheStorage = new LinkedHashMap<>();
+    @Value("${cache.capacity}")
+    private int cacheCapacity;
 
     @Override
-    public  T put(Integer key, T value) {
+    public T put(Integer key, T value) {
 
-        if (cacheStorage.size() < capacity) {
+        if (cacheStorage.size() < cacheCapacity) {
             cacheStorage.put(key, new Node(value));
         }
 
@@ -40,7 +42,7 @@ public class LFUCacheImpl<T> implements Cache<Integer, T> {
             }
         }
         cacheStorage.remove(keyToRemove);
-       return (T) cacheStorage.put(key, new Node(value));
+        return (T) cacheStorage.put(key, new Node(value));
     }
 
     @Override

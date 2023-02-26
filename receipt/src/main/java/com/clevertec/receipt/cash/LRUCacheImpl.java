@@ -1,19 +1,22 @@
 package com.clevertec.receipt.cash;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 @Data
+@Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class LRUCacheImpl<T> implements Cache<Integer, T> {
     private final Map<Integer, T> cacheData = new HashMap<>();
 
     private final List<Integer> order = new LinkedList<>();
 
-    private final int cacheCapacity;
-
-    public LRUCacheImpl(int cacheCapacity) {
-        this.cacheCapacity = cacheCapacity;
-    }
+    private int cacheCapacity;
 
     @Override
     public  T put(Integer key, T value) {
