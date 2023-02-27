@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Formatter;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -13,6 +14,10 @@ public class TxtPrintServiceImpl implements TxtPrintService {
 
     @Override
     public String createReceipt(BucketDto bucketDto) {
+
+        if (Objects.isNull(bucketDto)) {
+            return null;
+        }
 
         Formatter formatter = new Formatter();
         Date date = new Date();

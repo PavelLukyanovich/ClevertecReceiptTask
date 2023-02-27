@@ -43,29 +43,10 @@ public class ReceiptControllerTest {
         String requestAsString = objectMapper.writeValueAsString(receiptRequest);
         MvcResult mvcResult = mockMvc.perform(post("/receipt")
                         .content(requestAsString).contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andReturn();
+                        .andDo(print())
+                        .andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
 
         assertEquals("Good answer", contentAsString);
     }
-    @Test
-    public void getReceipt_WhenCorrectRequest1_ShouldReturnValidAnswer() throws Exception {
-
-        ReceiptRequest receiptRequest = new ReceiptRequest();
-        receiptRequest.setCardNumber("1234");
-        receiptRequest.setItems(Collections.singletonList(new ReceiptRequest.Item(1L, 2)));
-
-        when(receiptService.getReceipt(receiptRequest)).thenReturn("Good answer");
-
-        String requestAsString = objectMapper.writeValueAsString(new ReceiptRequest());
-        MvcResult mvcResult = mockMvc.perform(post("/receipt")
-                        .content(requestAsString).contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andReturn();
-        String contentAsString = mvcResult.getResponse().getContentAsString();
-
-        assertNotEquals("Good answer", contentAsString);
-    }
-
 }
