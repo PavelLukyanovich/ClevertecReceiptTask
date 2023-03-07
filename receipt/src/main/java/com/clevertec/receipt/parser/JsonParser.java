@@ -1,7 +1,12 @@
 package com.clevertec.receipt.parser;
 
+import com.clevertec.receipt.models.entities.Employee;
+import com.clevertec.receipt.models.entities.EmployeeCard;
+import com.clevertec.receipt.utils.Position;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.util.Collection;
 
 public class JsonParser {
     private final Object object;
@@ -45,6 +50,10 @@ public class JsonParser {
             } else if (field.getType().equals(String.class)) {
                 stringBuilder.append(formatString(field.get(object).toString()));
             } else if (field.getType().isArray()) {
+                stringBuilder.append(jsonArray(field.get(object), indent));
+            } else if (field.getType().isEnum()) {
+                stringBuilder.append(formatString(field.get(object).toString()));
+            } else if (field.getType().equals(Collection.class)) {
                 stringBuilder.append(jsonArray(field.get(object), indent));
             } else {
                 stringBuilder.append(createJson(field.get(object), indent));
@@ -99,5 +108,12 @@ public class JsonParser {
             stringBuilder.append("\t");
         }
         return stringBuilder.toString();
+    }
+
+    public static void main(String[] args) throws IllegalAccessException {
+        EmployeeCard employeeCard = new EmployeeCard(12345L, "0001");
+        Employee employee = new Employee("Pavel", "Lukyanovich", 32, true, employeeCard, 'A', Position.DRIVER);
+        JsonParser jsonParser = new JsonParser(employee, 2);
+        System.out.println(jsonParser);
     }
 }

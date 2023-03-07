@@ -1,16 +1,24 @@
 package com.clevertec.receipt.models.entities;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class Employee {
+public class Employee implements Serializable {
 
     private String firstName;
     private String lastName;
     private int age;
     private boolean haveEmployeeCard;
     private EmployeeCard employeeCard;
-    private List<String> skills;
     private char skillLevel;
     private Enum position;
 
+    public Employee(String firstName, String lastName, int age, boolean haveEmployeeCard, EmployeeCard employeeCard, char skillLevel,  Enum position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.haveEmployeeCard = haveEmployeeCard;
+        this.employeeCard = employeeCard;
+        this.skillLevel = skillLevel;
+        this.position = position;
+    }
 }
