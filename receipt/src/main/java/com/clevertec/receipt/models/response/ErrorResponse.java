@@ -1,5 +1,7 @@
 package com.clevertec.receipt.models.response;
 
-public record ErrorResponse(String message, Object errorObject) {
+import org.springframework.http.HttpStatus;
+
+public record ErrorResponse(HttpStatus status, String message, Object errorObject) {
 
 }
