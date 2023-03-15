@@ -18,13 +18,13 @@ public class ReceiptExceptionHandler {
     public ErrorResponse handlerNoSuchElementsException(NoSuchElementsException e) {
 
         log.info("Fetched NoSuchElementsException idsList={}", e.getNotFoundedProductIds());
-        return new ErrorResponse(HttpStatus.NOT_FOUND,"Products with current ids not founded", e.getNotFoundedProductIds());
+        return new ErrorResponse("Products with current ids not founded", e.getNotFoundedProductIds());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ReceiptJsonParseException.class)
     public ErrorResponse handlerNoSuchElementsException(ReceiptJsonParseException e) {
 
-        return new ErrorResponse(HttpStatus.BAD_REQUEST,"Something went wrong, pls try again", "");
+        return new ErrorResponse("Something went wrong, pls try again", "");
     }
 }
