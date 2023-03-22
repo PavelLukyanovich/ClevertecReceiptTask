@@ -31,7 +31,7 @@ public class ReceiptController {
         log.info("from getReceipt id = {}", receiptRequest);
         String receipt = receiptService.getReceipt(receiptRequest);
         return ResponseEntity
-                .accepted()
+                .created(URI.create("/receipt"))
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .header(HttpHeaders.CONTENT_DISPOSITION, HEADER_CONTENT_DISPOSITION)
                 .body(receipt);
