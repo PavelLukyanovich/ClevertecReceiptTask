@@ -12,9 +12,11 @@ spring:
   sql:
     init:
       mode: always
-
 calculation:
   service:
     quantity:
       default-quantity: 6
       default-discount: 10
+cache:
+  type: LFU
+  capacity: 3

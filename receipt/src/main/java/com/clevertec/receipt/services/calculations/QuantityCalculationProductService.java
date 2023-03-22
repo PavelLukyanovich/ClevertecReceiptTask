@@ -23,13 +23,16 @@ public class QuantityCalculationProductService implements CalculationProductServ
     @Override
     public BucketDto calculate(BucketDto bucketDto) {
 
-        if (Objects.isNull(bucketDto) || Objects.isNull(bucketDto.getProductDtos())) {
+        if (Objects.isNull(bucketDto) || Objects.isNull(bucketDto.getProductDtos())
+        || bucketDto.getProductDtos().size() == 0.0) {
             return null;
         }
 
         List<ProductDto> rawProductDtos = bucketDto.getProductDtos();
 
-        long quantityOfProductsDiscount = rawProductDtos.stream().filter(ProductDto::isHasDiscount).count();
+        long quantityOfProductsDiscount = rawProductDtos.stream()
+                .filter(ProductDto::isHasDiscount)
+                .count();
 
         rawProductDtos.forEach(productDto -> {
             Double discountedPrice = 0.0;
@@ -46,16 +49,4 @@ public class QuantityCalculationProductService implements CalculationProductServ
 
         return bucketDto;
     }
-
-    private ProductDto calculateDiscounts(ProductDto productDto) {
-
-        Double price = productDto.getPrice();
-        Double discountedPrice = MathOperations.subPercentageFromNumber(price.floatValue(), defaultDiscount);
-        productDto.setDiscountedPrice(discountedPrice);
-        Integer quantity = productDto.getQuantity();
-        Double totalPrice = discountedPrice > 0 ? discountedPrice * quantity : price * quantity;
-        productDto.setTotalPrice(MathOperations.defaultRound(totalPrice));
-        return productDto;
-    }
-
 }
